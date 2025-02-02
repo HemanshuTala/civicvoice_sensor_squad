@@ -8,6 +8,10 @@ import { ResponsiveContainer, BarChart, LineChart, Bar, Line, CartesianGrid, XAx
 import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
 import { motion,AnimatePresence  } from "framer-motion";
 import Carousel from '../components/Carousel';
+import hemanshu from '../assets/hemanshu_png.jpg'
+import jagrav from '../assets/jagrav_png.jpg'
+import jay from '../assets/jay.jpg'
+import manish from '../assets/manish.jpg'
 // Carousel Component with Full Width and Responsive Design
 
 
@@ -48,7 +52,7 @@ function Home() {
     {
       "name": "Hemanshu Tala",
       "role": "Full Stack Developer",
-      "image": "https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small/man-with-beard-avatar-character-isolated-icon-free-vector.jpg",
+      "image": hemanshu,
       "socials": {
         "linkedin": "https://www.linkedin.com",
 
@@ -58,7 +62,7 @@ function Home() {
     {
       "name": "Manish Kumar",
       "role": "Full Stack Developer",
-      "image": "https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small/man-with-beard-avatar-character-isolated-icon-free-vector.jpg",
+      "image": manish,
       "socials": {
         "linkedin": "https://www.linkedin.com",
 
@@ -68,7 +72,7 @@ function Home() {
     {
       "name": "Jagrav Naik",
       "role": "Full Stack Developer",
-      "image": "https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small/man-with-beard-avatar-character-isolated-icon-free-vector.jpg",
+      "image": jagrav,
       "socials": {
         "linkedin": "https://www.linkedin.com",
 
@@ -78,7 +82,7 @@ function Home() {
     {
       "name": "Jay Movaliya",
       "role": "Full Stack Developer",
-      "image": "https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small/man-with-beard-avatar-character-isolated-icon-free-vector.jpg",
+      "image":jay,
       "socials": {
         "linkedin": "https://www.linkedin.com",
 
