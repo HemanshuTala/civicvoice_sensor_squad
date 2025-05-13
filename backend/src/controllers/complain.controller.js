@@ -5,7 +5,7 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 import { ApiError } from "../utils/apiError.js"
 import { ApiResponse } from "../utils/apiResponse.js"
 import { createStatus } from "./status.controller.js";
-import { createAddress } from "./Address.controller.js";
+import { createAddress } from "./address.controller.js";
 import mongoose from "mongoose";
 import { Status } from "../models/status.model.js";
 import nodemailer from "nodemailer";
