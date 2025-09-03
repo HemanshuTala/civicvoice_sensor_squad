@@ -69,17 +69,22 @@ function Navbar() {
         />
       </Helmet>
 
-      <nav className="bg-white shadow-lg w-full z-20">
+      <nav className="bg-white shadow-xl border-b-2 border-gray-100 w-full z-20 sticky top-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center space-x-6">
-              <span
-                className="text-3xl font-semibold text-green-600 tracking-wide hover:text-green-700 transition-all duration-300 ease-in-out"
-                style={{ fontFamily: 'Poppins', fontWeight: 600 }}
-              >
-                CivicVoice
-              </span>
+              <Link to="/" className="flex items-center space-x-3 group">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                  <span className="text-white font-bold text-xl">CV</span>
+                </div>
+                <span
+                  className="text-3xl font-bold text-black tracking-wide hover:text-green-600 transition-all duration-300 ease-in-out"
+                  style={{ fontFamily: 'Poppins', fontWeight: 700 }}
+                >
+                  Civic<span className="text-green-600">Voice</span>
+                </span>
+              </Link>
             </div>
 
             {/* Hamburger icon (Mobile view) */}
@@ -93,50 +98,61 @@ function Navbar() {
             </div>
 
             {/* Desktop Navigation Links */}
-            <div className="hidden md:flex space-x-6 items-center">
+            <div className="hidden md:flex space-x-8 items-center">
               <Link
                 to="/"
                 onClick={handleLinkClick}
-                className="text-gray-800 hover:text-green-600 transition-all duration-300 ease-in-out transform hover:scale-105"
-                style={{ fontFamily: 'Poppins', fontWeight: 500, fontSize: '18px' }}
+                className="text-black hover:text-green-600 transition-all duration-300 ease-in-out font-semibold text-lg relative group"
+                style={{ fontFamily: 'Poppins' }}
               >
                 <FaHome className="inline mr-2" /> Home
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+
+              <Link
+                to="/about"
+                onClick={handleLinkClick}
+                className="text-black hover:text-green-600 transition-all duration-300 ease-in-out font-semibold text-lg relative group"
+                style={{ fontFamily: 'Poppins' }}
+              >
+                About
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
               </Link>
 
               {/* Dropdown Menu */}
               <div className="relative group">
                 <button
-                  className="text-gray-800 hover:text-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center text-lg"
-                  style={{ fontFamily: 'Poppins', fontWeight: 500 }}
+                  className="text-black hover:text-green-600 transition-all duration-300 ease-in-out font-semibold text-lg flex items-center relative"
+                  style={{ fontFamily: 'Poppins' }}
                 >
                   <FaListAlt className="mr-2" /> Complaints
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
                 </button>
-                <div className="absolute left-0 mt-2 w-56 bg-white border rounded-lg shadow-xl z-30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
+                <div className="absolute left-0 mt-2 w-64 bg-white border-2 border-gray-100 rounded-2xl shadow-2xl z-30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
                   <Link
-                  onClick={handleLinkClick}
+                    onClick={handleLinkClick}
                     to="/complaints"
-                    className="flex items-center px-5 py-3 text-gray-700 hover:text-green-600 hover:bg-gray-100 transition-all duration-300 ease-in-out transform hover:scale-105"
+                    className="flex items-center px-6 py-4 text-gray-700 hover:text-green-600 hover:bg-green-50 transition-all duration-300 ease-in-out rounded-t-2xl"
                     style={{ fontFamily: 'Poppins' }}
                   >
-                    <FaRegClipboard className="mr-2" />
-                    Complaints
+                    <FaRegClipboard className="mr-3 text-lg" />
+                    View Complaints
                   </Link>
                   <Link
-
                     to="/create-complaint"
-                    className="flex items-center px-5 py-3 text-gray-700 hover:text-green-600 hover:bg-gray-100 transition-all duration-300 ease-in-out transform hover:scale-105"
+                    className="flex items-center px-6 py-4 text-gray-700 hover:text-green-600 hover:bg-green-50 transition-all duration-300 ease-in-out"
                     style={{ fontFamily: 'Poppins' }}
                   >
-                    <FaCog className="mr-2" />
+                    <FaCog className="mr-3 text-lg" />
                     Create Complaint
                   </Link>
                   <Link
-                  onClick={handleLinkClick}
+                    onClick={handleLinkClick}
                     to="/my-complaints"
-                    className="flex items-center px-5 py-3 text-gray-700 hover:text-green-600 hover:bg-gray-100 transition-all duration-300 ease-in-out transform hover:scale-105"
+                    className="flex items-center px-6 py-4 text-gray-700 hover:text-green-600 hover:bg-green-50 transition-all duration-300 ease-in-out rounded-b-2xl"
                     style={{ fontFamily: 'Poppins' }}
                   >
-                    <FaListAlt className="mr-2" />
+                    <FaListAlt className="mr-3 text-lg" />
                     My Complaints
                   </Link>
                 </div>
@@ -145,31 +161,34 @@ function Navbar() {
               <Link
                 to="/feedback"
                 onClick={handleLinkClick}
-                className="text-gray-800 hover:text-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 text-lg"
-                style={{ fontFamily: 'Poppins', fontWeight: 500 }}
+                className="text-black hover:text-green-600 transition-all duration-300 ease-in-out font-semibold text-lg relative group"
+                style={{ fontFamily: 'Poppins' }}
               >
                 <FaEnvelope className="inline mr-2" /> Feedback
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
               </Link>
 
               {isAdmin && 
               <Link
-              to="/admin/dashboard"
-              onClick={handleLinkClick}
-              className="text-gray-800 hover:text-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 text-lg"
-              style={{ fontFamily: 'Poppins', fontWeight: 500 }}
-            >
-              <FaEnvelope className="inline mr-2" /> Admin
-            </Link>}
+                to="/admin/dashboard"
+                onClick={handleLinkClick}
+                className="text-black hover:text-green-600 transition-all duration-300 ease-in-out font-semibold text-lg relative group"
+                style={{ fontFamily: 'Poppins' }}
+              >
+                <FaCog className="inline mr-2" /> Admin
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
+              </Link>}
 
-            {isSuperAdmin && 
+              {isSuperAdmin && 
               <Link
-              to="/admin/dashboard"
-              onClick={handleLinkClick}
-              className="text-gray-800 hover:text-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 text-lg"
-              style={{ fontFamily: 'Poppins', fontWeight: 500 }}
-            >
-              <FaEnvelope className="inline mr-2" /> Super Admin
-            </Link>}
+                to="/admin/dashboard"
+                onClick={handleLinkClick}
+                className="text-black hover:text-green-600 transition-all duration-300 ease-in-out font-semibold text-lg relative group"
+                style={{ fontFamily: 'Poppins' }}
+              >
+                <FaCrown className="inline mr-2" /> Super Admin
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
+              </Link>}
             </div>
 
             {/* Login/Logout Button */}
@@ -178,7 +197,7 @@ function Navbar() {
                 <button
                   onClick={handleLogout}
                   style={{ fontFamily: "Poppins, sans-serif" }}
-                  className="bg-green-600 text-white bold-400 px-6 py-3 rounded-lg shadow-lg hover:bg-green-500 transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center"
+                  className="bg-black text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:bg-gray-800 hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center"
                 >
                   <FaSignOutAlt className="mr-2" /> Logout
                 </button>
@@ -186,8 +205,8 @@ function Navbar() {
                 <Link
                   to="/login"
                   onClick={handleLinkClick}
-                  className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-500 transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center"
-                  style={{ fontFamily: 'Poppins', fontWeight: 600, fontSize: '18px' }}
+                  className="bg-green-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:bg-green-700 hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center"
+                  style={{ fontFamily: 'Poppins' }}
                 >
                   <FaSignInAlt className="mr-2" /> Login
                 </Link>

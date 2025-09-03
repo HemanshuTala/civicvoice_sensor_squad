@@ -5,9 +5,9 @@
 @tailwind utilities;
 
 body {
-    font-family: 'Roboto', sans-serif;
-  }
-  .navbar {
-    font-family: 'Inter', sans-serif;
-  }
-  
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+  font-family: 'Inter', sans-serif;
+}
