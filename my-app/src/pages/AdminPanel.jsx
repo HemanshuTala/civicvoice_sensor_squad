@@ -29,16 +29,17 @@ function Admin() {
   return (
     <div className="flex h-screen w-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-gray-800 text-white flex flex-col">
-        <div className="p-4 border-b border-gray-700">
-          <h2 className="text-2xl font-bold">Admin Panel</h2>
+      <aside className="w-64 bg-gray-900 text-white flex flex-col">
+        <div className="p-5 border-b border-gray-800">
+          <h2 className="text-2xl font-bold tracking-wide">Admin Panel</h2>
+          <p className="text-xs text-gray-400 mt-1">CivicVoice</p>
         </div>
         <nav className="flex-grow p-4">
-          <ul className="space-y-4">
+          <ul className="space-y-2">
             <li>
               <Link
                 to="/admin/dashboard"
-                className="block py-2 px-4 rounded hover:bg-gray-700"
+                className="block py-2.5 px-4 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 Dashboard
               </Link>
@@ -47,7 +48,7 @@ function Admin() {
               <li>
                 <Link
                   to="/admin/add"
-                  className="block py-2 px-4 rounded hover:bg-gray-700"
+                  className="block py-2.5 px-4 rounded-lg hover:bg-gray-800 transition-colors"
                 >
                   Add Admin
                 </Link>
@@ -57,7 +58,7 @@ function Admin() {
               <li>
                 <Link
                   to="/admin/approval"
-                  className="block py-2 px-4 rounded hover:bg-gray-700"
+                  className="block py-2.5 px-4 rounded-lg hover:bg-gray-800 transition-colors"
                 >
                   Approval
                 </Link>
@@ -67,7 +68,7 @@ function Admin() {
               <li>
                 <Link
                   to="/admin/completeApproval"
-                  className="block py-2 px-4 rounded hover:bg-gray-700"
+                  className="block py-2.5 px-4 rounded-lg hover:bg-gray-800 transition-colors"
                 >
                   Complete Approval
                 </Link>
@@ -76,16 +77,16 @@ function Admin() {
             <li className="relative">
               <button
                 onClick={toggleDropdown}
-                className="block py-2 px-4 w-full text-left rounded hover:bg-gray-700"
+                className="block py-2.5 px-4 w-full text-left rounded-lg hover:bg-gray-800 transition-colors"
               >
                 Complaints
               </button>
               {isDropdownOpen && (
-                <ul className="absolute left-0 w-full bg-gray-700 text-white mt-2 rounded shadow-lg">
+                <ul className="mt-2 rounded-lg overflow-hidden border border-gray-800">
                   <li>
                     <Link
                       to="/admin/complaints/completed"
-                      className="block py-2 px-4 hover:bg-gray-600"
+                      className="block py-2 px-4 bg-gray-850 hover:bg-gray-800 transition-colors"
                     >
                       Completed
                     </Link>
@@ -93,7 +94,7 @@ function Admin() {
                   <li>
                     <Link
                       to="/admin/complaints/overdue"
-                      className="block py-2 px-4 hover:bg-gray-600"
+                      className="block py-2 px-4 bg-gray-850 hover:bg-gray-800 transition-colors"
                     >
                       Overdue
                     </Link>
@@ -101,7 +102,7 @@ function Admin() {
                   <li>
                     <Link
                       to="/admin/complaints/pending"
-                      className="block py-2 px-4 hover:bg-gray-600"
+                      className="block py-2 px-4 bg-gray-850 hover:bg-gray-800 transition-colors"
                     >
                       Pending
                     </Link>
@@ -109,7 +110,7 @@ function Admin() {
                   <li>
                     <Link
                       to="/admin/complaints/notaccepted"
-                      className="block py-2 px-4 hover:bg-gray-600"
+                      className="block py-2 px-4 bg-gray-850 hover:bg-gray-800 transition-colors"
                     >
                       Not Accepted
                     </Link>
@@ -117,7 +118,7 @@ function Admin() {
                   <li>
                     <Link
                       to="/admin/complaints/rejected"
-                      className="block py-2 px-4 hover:bg-gray-600"
+                      className="block py-2 px-4 bg-gray-850 hover:bg-gray-800 transition-colors"
                     >
                       Rejected
                     </Link>
@@ -128,7 +129,7 @@ function Admin() {
             <li>
               <Link
                 to="/admin/feedback"
-                className="block py-2 px-4 rounded hover:bg-gray-700"
+                className="block py-2.5 px-4 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 Feedback
               </Link>
@@ -137,10 +138,10 @@ function Admin() {
         </nav>
 
         {/* Logout Button */}
-        <div className="p-4 border-t border-gray-700">
+        <div className="p-4 border-t border-gray-800">
           <button
             onClick={handleLogout}
-            className="w-full py-2 px-4 text-center bg-red-600 rounded hover:bg-red-700"
+            className="w-full py-2.5 px-4 text-center bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
           >
             Logout
           </button>

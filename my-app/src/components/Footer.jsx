@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa'; // Social Media Icons
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa'; // Social Media Icons
 import { Link } from 'react-router-dom'; // For internal page links
 
 function Footer() {
@@ -15,10 +15,10 @@ function Footer() {
         />
       </Helmet>
 
-      <footer className="bg-white text-black py-20">
+      <footer className="bg-white text-black py-16 md:py-20">
         <div className="container mx-auto px-6 sm:px-12 lg:px-24">
           {/* Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-16">
             {/* About CivicVoice Section */}
             <motion.div
               className="lg:col-span-2"
@@ -38,7 +38,7 @@ function Footer() {
                 Empowering citizens to voice their concerns and bridge the gap between communities and local authorities. 
                 Built during a hackathon to foster transparency and engagement in civic governance.
               </p>
-              <div className="flex space-x-4">
+              <div className="flex flex-wrap gap-3">
                 <div className="bg-green-500 text-white px-4 py-2 rounded-lg font-semibold">
                   Hackathon Winner
                 </div>
@@ -125,13 +125,13 @@ function Footer() {
 
           {/* Footer Bottom */}
           <motion.div
-            className="border-t border-gray-200 pt-8 mt-16"
+            className="border-t border-gray-200 pt-8 mt-10 md:mt-16"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="text-gray-600" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <div className="text-gray-600 text-center md:text-left" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 <p>© 2025 CivicVoice. All rights reserved.</p>
                 <p className="text-green-500 font-semibold">
                   Built with ❤️ by The Sensor Squad
@@ -139,20 +139,22 @@ function Footer() {
               </div>
 
               {/* Social Media Icons */}
-              <div className="flex space-x-6">
+              <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
                 <a 
                   href="https://github.com/HemanshuTala/civicvoice_sensor_squad" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-gray-100 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-green-500 transition-all duration-300 group"
+                  aria-label="GitHub"
                 >
-                  <FaLinkedin className="text-xl text-gray-600 group-hover:text-white" />
+                  <FaGithub className="text-xl text-gray-600 group-hover:text-white" />
                 </a>
                 <a 
                   href="https://twitter.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-gray-100 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-green-500 transition-all duration-300 group"
+                  aria-label="Twitter"
                 >
                   <FaTwitter className="text-xl text-gray-600 group-hover:text-white" />
                 </a>
@@ -161,6 +163,7 @@ function Footer() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-gray-100 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-green-500 transition-all duration-300 group"
+                  aria-label="LinkedIn"
                 >
                   <FaLinkedin className="text-xl text-gray-600 group-hover:text-white" />
                 </a>
@@ -169,6 +172,7 @@ function Footer() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-gray-100 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-green-500 transition-all duration-300 group"
+                  aria-label="Instagram"
                 >
                   <FaInstagram className="text-xl text-gray-600 group-hover:text-white" />
                 </a>
@@ -177,7 +181,7 @@ function Footer() {
 
             {/* Additional Footer Info */}
             <div className="mt-8 pt-8 border-t border-gray-200 text-center">
-              <div className="flex flex-wrap justify-center space-x-8 text-sm text-gray-600">
+              <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
                 <Link to="/privacy" className="hover:text-green-500 transition-colors duration-300">Privacy Policy</Link>
                 <Link to="/terms" className="hover:text-green-500 transition-colors duration-300">Terms of Service</Link>
                 <Link to="/support" className="hover:text-green-500 transition-colors duration-300">Support</Link>

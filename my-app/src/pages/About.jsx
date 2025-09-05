@@ -133,7 +133,7 @@ function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+    <div className="min-h-screen bg-white w-full mt-5" style={{ fontFamily: 'Poppins, sans-serif' }}>
       <Helmet>
         <title>About Us - CivicVoice</title>
         <meta name="description" content="Learn about CivicVoice, our mission, team, and the technology behind our civic engagement platform." />
@@ -147,11 +147,11 @@ function About() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <h1 className="text-7xl font-bold text-black mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold text-black mb-6">
               About <span className="text-green-600">CivicVoice</span>
             </h1>
             <div className="w-32 h-1 bg-green-600 mx-auto rounded-full mb-8"></div>
-            <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
               Empowering citizens to voice their concerns and bridge the gap between communities and local authorities through innovative technology and transparent governance.
             </p>
           </motion.div>
@@ -167,10 +167,10 @@ function About() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-5xl font-bold text-black mb-8">
+              <h2 className="text-4xl md:text-5xl font-bold text-black mb-8">
                 Our <span className="text-green-600">Mission</span>
               </h2>
-              <p className="text-xl text-gray-700 leading-relaxed mb-8">
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
                 To create a transparent, efficient, and accessible platform that enables citizens to actively participate in civic governance. We believe that every voice matters and every concern deserves attention.
               </p>
               <div className="space-y-4">
@@ -182,7 +182,7 @@ function About() {
                 ].map((item, index) => (
                   <div key={index} className="flex items-center space-x-3">
                     <FaCheckCircle className="text-green-600 text-xl" />
-                    <span className="text-gray-700 text-lg">{item}</span>
+                    <span className="text-gray-700 text-base md:text-lg">{item}</span>
                   </div>
                 ))}
               </div>
@@ -194,17 +194,17 @@ function About() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="bg-white rounded-2xl p-8 shadow-xl border-2 border-gray-100"
             >
-              <h3 className="text-3xl font-bold text-black mb-6">
+              <h3 className="text-2xl md:text-3xl font-bold text-black mb-6">
                 Our <span className="text-green-600">Vision</span>
               </h3>
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
                 To become the leading platform for civic engagement, where technology serves as a catalyst for positive change in communities worldwide.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {achievements.map((achievement, index) => (
                   <div key={index} className="text-center p-4 bg-gray-50 rounded-xl">
                     <achievement.icon className="text-3xl text-green-600 mx-auto mb-2" />
-                    <h4 className="font-semibold text-black text-sm">{achievement.title}</h4>
+                    <h4 className="font-semibold text-black text-xs md:text-sm">{achievement.title}</h4>
                   </div>
                 ))}
               </div>
@@ -222,11 +222,11 @@ function About() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-6xl font-bold text-black mb-4">
+            <h2 className="text-4xl md:text-6xl font-bold text-black mb-4">
               Platform <span className="text-green-600">Features</span>
             </h2>
             <div className="w-24 h-1 bg-green-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
               Comprehensive features designed to enhance civic engagement and streamline complaint resolution
             </p>
           </motion.div>
@@ -244,7 +244,7 @@ function About() {
                 <div className="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-500 transition-colors duration-300">
                   <feature.icon className="text-3xl text-green-600 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="text-xl font-bold text-black mb-4 group-hover:text-green-600 transition-colors duration-300">
+                <h3 className="text-lg md:text-xl font-bold text-black mb-4 group-hover:text-green-600 transition-colors duration-300">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -265,11 +265,11 @@ function About() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-6xl font-bold text-black mb-4">
+            <h2 className="text-4xl md:text-6xl font-bold text-black mb-4">
               Technology <span className="text-green-600">Stack</span>
             </h2>
             <div className="w-24 h-1 bg-green-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
               Built with modern, reliable technologies for optimal performance and scalability
             </p>
           </motion.div>
@@ -284,8 +284,8 @@ function About() {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <tech.icon className={`text-6xl mx-auto mb-4 ${tech.color} group-hover:text-green-600 transition-colors duration-300`} />
-                <h3 className="text-lg font-bold text-black group-hover:text-green-600 transition-colors duration-300">
+                <tech.icon className={`text-5xl md:text-6xl mx-auto mb-4 ${tech.color} group-hover:text-green-600 transition-colors duration-300`} />
+                <h3 className="text-base md:text-lg font-bold text-black group-hover:text-green-600 transition-colors duration-300">
                   {tech.name}
                 </h3>
               </motion.div>
@@ -303,11 +303,11 @@ function About() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-6xl font-bold text-black mb-4">
+            <h2 className="text-4xl md:text-6xl font-bold text-black mb-4">
               Meet Our <span className="text-green-600">Team</span>
             </h2>
             <div className="w-24 h-1 bg-green-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
               The passionate developers behind CivicVoice - The Sensor Squad
             </p>
           </motion.div>
@@ -326,10 +326,11 @@ function About() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-32 h-32 mx-auto rounded-full object-cover shadow-lg border-4 border-gray-200 group-hover:border-green-500 transition-all duration-300"
+                    loading="lazy"
+                    className="w-28 h-28 md:w-32 md:h-32 mx-auto rounded-full object-cover shadow-lg border-4 border-gray-200 group-hover:border-green-500 transition-all duration-300"
                   />
                 </div>
-                <h3 className="text-xl font-bold text-black mb-2 group-hover:text-green-600 transition-colors duration-300">
+                <h3 className="text-lg md:text-xl font-bold text-black mb-2 group-hover:text-green-600 transition-colors duration-300">
                   {member.name}
                 </h3>
                 <p className="text-green-600 font-semibold mb-4">{member.role}</p>
@@ -361,17 +362,17 @@ function About() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-20 px-6 bg-black text-white">
+      <section className="py-20 px-6 bg-white text-white">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-6xl font-bold mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black">
               Join the <span className="text-green-500">Movement</span>
             </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-black mb-8 max-w-2xl mx-auto">
               Be part of the change. Help us build better communities through technology and civic engagement.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -387,7 +388,7 @@ function About() {
                 View on GitHub
               </motion.a>
               <motion.button
-                className="px-8 py-4 border-2 border-white text-white rounded-xl font-semibold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2"
+                className="px-8 py-4 border-2 border-black text-black rounded-xl font-semibold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

@@ -7,7 +7,7 @@ function CompletedComplaints() {
   const [isSuperAdmin, setIsSuperAdmin] = useState(false);
 
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("Pending"); // Default status
+  const [statusFilter, setStatusFilter] = useState("All");
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -17,6 +17,11 @@ function CompletedComplaints() {
   const [showModal, setShowModal] = useState(false);
   const [selectedComplaint, setSelectedComplaint] = useState(null);
   const [newDeadline, setNewDeadline] = useState("");
+
+  // timeframe filters
+  const [quickRange, setQuickRange] = useState("All"); // All, 7d, 30d, YTD
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
   useEffect(() => {
     const token = Cookies.get("token"); // Get the token from cookies
@@ -86,8 +91,43 @@ function CompletedComplaints() {
     fetchComplaints();
   }, []);
 
+  const withinDateRange = (dateStr) => {
+    const created = new Date(dateStr);
+    const now = new Date();
+    if (quickRange === "7d") {
+      const cutoff = new Date();
+      cutoff.setDate(now.getDate() - 7);
+      if (created < cutoff) return false;
+    } else if (quickRange === "30d") {
+      const cutoff = new Date();
+      cutoff.setDate(now.getDate() - 30);
+      if (created < cutoff) return false;
+    } else if (quickRange === "YTD") {
+      const cutoff = new Date(now.getFullYear(), 0, 1);
+      if (created < cutoff) return false;
+    }
+    if (fromDate) {
+      const from = new Date(fromDate);
+      if (created < from) return false;
+    }
+    if (toDate) {
+      const to = new Date(toDate);
+      to.setHours(23, 59, 59, 999);
+      if (created > to) return false;
+    }
+    return true;
+  };
+
+  const filteredComplaints = complaints.filter((c) => {
+    const matchesSearch = c.name?.toLowerCase().includes(search.toLowerCase()) || c.complainNo?.toLowerCase().includes(search.toLowerCase());
+    const matchesStatus = statusFilter === "All" || c.status === statusFilter;
+    const dateField = c.deadline || c.createdAt || c.updatedAt || new Date().toISOString();
+    const matchesDate = dateField ? withinDateRange(dateField) : true;
+    return matchesSearch && matchesStatus && matchesDate;
+  });
+
   return (
-    <div className="min-h-screen py-8 px-6 font-poppins" style={{ fontFamily: 'Poppins, sans-serif' }}>
+    <div className="min-h-screen py-8 px-4 sm:px-6 font-poppins" style={{ fontFamily: 'Poppins, sans-serif' }}>
       <Helmet>
         <link
           rel="stylesheet"
@@ -95,12 +135,51 @@ function CompletedComplaints() {
         />
       </Helmet>
 
-      <h1 className="text-4xl font-semibold text-gray-800 mb-6 text-center" style={{ fontFamily: 'Poppins, sans-serif' }}>
+      <h1 className="text-3xl sm:text-4xl font-semibold text-gray-800 mb-2 text-center" style={{ fontFamily: 'Poppins, sans-serif' }}>
         Overdue Complaints
       </h1>
-      <p className="text-lg text-gray-600 mb-6 text-center">
+      <p className="text-base sm:text-lg text-gray-600 mb-6 text-center">
         Review, manage, and resolve user complaints effectively.
       </p>
+
+      {/* Filters */}
+      <div className="bg-white rounded-xl shadow-md p-4 mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="flex gap-3">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by Name or Complaint No"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+          />
+        </div>
+        <div className="flex gap-3">
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+          >
+            <option value="All">All Statuses</option>
+            <option value="Overdue">Overdue</option>
+            <option value="Completed">Completed</option>
+          </select>
+          <select
+            value={quickRange}
+            onChange={(e) => setQuickRange(e.target.value)}
+            className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+          >
+            <option value="All">All Time</option>
+            <option value="7d">Last 7 days</option>
+            <option value="30d">Last 30 days</option>
+            <option value="YTD">Year to date</option>
+          </select>
+        </div>
+        <div className="flex items-center gap-2">
+          <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" />
+          <span className="text-gray-500">to</span>
+          <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" />
+        </div>
+      </div>
 
       {/* Complaints Table */}
       <div className="overflow-x-auto bg-white rounded-lg shadow-lg max-w-6xl mx-auto">
@@ -119,11 +198,11 @@ function CompletedComplaints() {
             </tr>
           </thead>
           <tbody className="text-gray-700">
-            {Array.isArray(complaints) && complaints.length > 0 ? (
-              complaints.map((complaint) => (
+            {Array.isArray(filteredComplaints) && filteredComplaints.length > 0 ? (
+              filteredComplaints.map((complaint) => (
                 <tr
                   key={complaint.complainNo}
-                  className="hover:bg-blue-50 border-b transition-all duration-300"
+                  className="hover:bg-green-50 border-b transition-all duration-300"
                 >
                   <td className="py-4 px-6">{complaint.name}</td>
                   <td className="py-4 px-6">{complaint.description.length > 50
@@ -174,7 +253,7 @@ function CompletedComplaints() {
               ))
             ) : (
               <tr>
-                <td colSpan="7" className="py-6 text-center text-gray-500">
+                <td colSpan="9" className="py-6 text-center text-gray-500">
                   No complaints found
                 </td>
               </tr>

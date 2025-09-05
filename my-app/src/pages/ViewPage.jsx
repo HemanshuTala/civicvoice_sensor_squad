@@ -8,8 +8,6 @@ const ViewPage = () => {
   // Get the 'id' query parameter
   const id = urlObj.searchParams.get("id");
 
-  console.log(id); // Outputs: CMP-1738389350163-1773
-
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -37,10 +35,8 @@ const ViewPage = () => {
       }
 
       const data = await response.json();
-      console.log(data);
       setComplaints(data.data || []); // Extract 'data' array
     } catch (err) {
-      console.error(err);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -78,14 +74,34 @@ const ViewPage = () => {
   const complaint = complaints[0];
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center py-12">
+    <div className="min-h-screen bg-gray-100 flex justify-center py-10 md:py-12 px-4">
       <Helmet>
         <title>Complaint Details</title>
         <meta name="description" content="View detailed information about the complaint." />
       </Helmet>
 
-      <div className="bg-white w-full max-w-screen-xl rounded-lg shadow-lg p-8 lg:p-16 space-y-8">
-        <div className="flex flex-col lg:flex-row items-center space-y-6 lg:space-x-12 lg:space-y-0">
+      <div className="bg-white w-full max-w-screen-xl rounded-lg shadow-lg p-6 md:p-8 lg:p-12 space-y-8">
+        {/* Summary Header */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-green-50 border border-green-100 rounded-xl p-4">
+            <div className="text-xs text-gray-500">Complaint No</div>
+            <div className="text-lg font-semibold text-gray-800">{complaint.complainNo}</div>
+          </div>
+          <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
+            <div className="text-xs text-gray-500">Deadline</div>
+            <div className="text-lg font-semibold text-gray-800">{complaint.deadline}</div>
+          </div>
+          <div className="bg-amber-50 border border-amber-100 rounded-xl p-4">
+            <div className="text-xs text-gray-500">Status</div>
+            <div className="text-lg font-semibold text-gray-800">{complaint.status}</div>
+          </div>
+          <div className="bg-purple-50 border border-purple-100 rounded-xl p-4">
+            <div className="text-xs text-gray-500">Votes</div>
+            <div className="text-lg font-semibold text-gray-800">{complaint.voteCount}</div>
+          </div>
+        </div>
+
+        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
           {/* Complaint Image */}
           <img
             src={`${import.meta.env.VITE_BACKEND_URL}/${complaint.image.replace("public\\", "")}`}
@@ -94,9 +110,9 @@ const ViewPage = () => {
           />
           {/* Complaint Details */}
           <div className="lg:w-3/5 flex flex-col justify-between space-y-6">
-            <h1 className="text-3xl lg:text-4xl font-semibold text-gray-800">{complaint.name}</h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800">{complaint.name}</h1>
             <p className="text-sm text-gray-500">Complaint No: {complaint.complainNo}</p>
-            <p className="text-lg text-gray-700">{complaint.description}</p>
+            <p className="text-base md:text-lg text-gray-700">{complaint.description}</p>
             {/* Details Section */}
             <div className="text-gray-600 space-y-4">
               <div className="flex items-center space-x-3">
@@ -116,10 +132,6 @@ const ViewPage = () => {
                 <p className="text-lg"><strong>Action by SA:</strong> {complaint.actionBySA}</p>
               </div>
             </div>
-            {/* Take Action Button */}
-            {/* <button className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 focus:outline-none transition duration-300 ease-in-out">
-              Take Action
-            </button> */}
           </div>
         </div>
       </div>

@@ -127,7 +127,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+    <div className="w-full min-h-screen bg-white pt-15 md:pt-16" style={{ fontFamily: 'Poppins, sans-serif' }}>
       <Helmet>
         <link
           rel="stylesheet"
@@ -167,19 +167,19 @@ function Home() {
             </motion.div>
 
             {/* Main Title */}
-            <h1 className="text-6xl md:text-8xl font-bold text-black mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-black mb-6 leading-tight">
               Civic <span className="text-green-500">Voice</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl md:text-2xl text-black max-w-4xl mx-auto leading-relaxed mb-12">
+            <p className="text-lg md:text-2xl text-black max-w-4xl mx-auto leading-relaxed mb-12">
               Bridge the gap between communities and local authorities through 
               <span className="text-green-400 font-semibold"> transparency</span> and 
               <span className="text-green-400 font-semibold"> engagement</span>
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-16">
               <motion.button
                 className="group px-8 py-4 bg-green-500 text-white rounded-xl font-semibold text-lg hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center"
                 whileHover={{ scale: 1.05 }}
@@ -201,7 +201,7 @@ function Home() {
 
             {/* Stats Preview */}
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
@@ -241,7 +241,9 @@ function Home() {
       {/* Carousel Section */}
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
-          <Carousel data={slides} />
+          <div className="rounded-2xl overflow-hidden shadow-lg">
+            <Carousel data={slides} />
+          </div>
         </div>
       </section>
 
@@ -255,11 +257,11 @@ function Home() {
             transition={{ duration: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">
+            <h2 className="text-4xl md:text-6xl font-bold text-black mb-4">
               Why Choose <span className="text-green-600">Civic Voice?</span>
             </h2>
             <div className="w-24 h-1 bg-green-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
               Experience the power of community-driven governance with our innovative platform
             </p>
           </motion.div>
@@ -330,11 +332,11 @@ function Home() {
             transition={{ duration: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">
+            <h2 className="text-4xl md:text-6xl font-bold text-black mb-4">
               System <span className="text-green-600">Dashboard</span>
             </h2>
             <div className="w-24 h-1 bg-green-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
               Real-time insights into our complaint resolution system
             </p>
           </motion.div>
@@ -450,11 +452,11 @@ function Home() {
             transition={{ duration: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">
+            <h2 className="text-4xl md:text-6xl font-bold text-black mb-4">
               Hierarchical <span className="text-green-600">Admin System</span>
             </h2>
             <div className="w-24 h-1 bg-green-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
               Efficient management system with district and state level administration for streamlined complaint resolution
             </p>
           </motion.div>
@@ -567,11 +569,11 @@ function Home() {
             transition={{ duration: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">
+            <h2 className="text-4xl md:text-6xl font-bold text-black mb-4">
               Performance <span className="text-green-600">Analytics</span>
             </h2>
             <div className="w-24 h-1 bg-green-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
               Track our progress and system performance over time
             </p>
           </motion.div>
@@ -665,113 +667,117 @@ function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">
-              How It <span className="text-green-600">Works</span>
-            </h2>
-            <div className="w-24 h-1 bg-green-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-              Simple steps to resolve your complaints efficiently
-            </p>
-          </motion.div>
-          
-          {/* Process Steps */}
-          <div className="relative">
-            {/* Connection Line */}
-            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gray-200 transform -translate-y-1/2 z-0"></div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-              {/* Step 1 */}
-              <motion.div
-                className="group text-center"
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-              >
-                <div className="relative mb-6">
-                  <div className="w-20 h-20 mx-auto bg-green-500 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:scale-110 group-hover:bg-black">
-                    <MdSecurity className="text-3xl text-white" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-black mb-3 group-hover:text-green-600 transition-colors duration-300">Sign Up & Login</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Create your account and access the platform with secure authentication
-                </p>
-              </motion.div>
+    <section id="how-it-works" className="py-20 px-6 bg-gray-50">
+  <div className="max-w-6xl mx-auto">
+    <motion.div
+      className="text-center mb-16"
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+        How It <span className="text-green-600">Works</span>
+      </h2>
+      <div className="w-24 h-1 bg-green-600 mx-auto rounded-full mb-6"></div>
+      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        Simple steps to resolve your complaints efficiently
+      </p>
+    </motion.div>
 
-              {/* Step 2 */}
-              <motion.div
-                className="group text-center"
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-              >
-                <div className="relative mb-6">
-                  <div className="w-20 h-20 mx-auto bg-black rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:scale-110 group-hover:bg-green-500">
-                    <MdReportProblem className="text-3xl text-white" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-black mb-3 group-hover:text-green-600 transition-colors duration-300">Report Issues</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Submit complaints about roads, sanitation, transport, and infrastructure
-                </p>
-              </motion.div>
+    {/* Process Steps */}
+    <div className="relative">
+      {/* Connection Line */}
+      <div className="hidden lg:block absolute top-20 left-0 right-0 h-2 bg-gradient-to-r from-green-500 to-green-700 rounded-full transform -translate-y-1/2 z-0"></div>
 
-              {/* Step 3 */}
-              <motion.div
-                className="group text-center"
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-              >
-                <div className="relative mb-6">
-                  <div className="w-20 h-20 mx-auto bg-green-500 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:scale-110 group-hover:bg-black">
-                    <MdTrackChanges className="text-3xl text-white" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-black mb-3 group-hover:text-green-600 transition-colors duration-300">Track Progress</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Monitor real-time status updates and resolution progress
-                </p>
-              </motion.div>
-
-              {/* Step 4 */}
-              <motion.div
-                className="group text-center"
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-              >
-                <div className="relative mb-6">
-                  <div className="w-20 h-20 mx-auto bg-black rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:scale-110 group-hover:bg-green-500">
-                    <HiOutlineChatBubbleBottomCenterText className="text-3xl text-white" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-black mb-3 group-hover:text-green-600 transition-colors duration-300">Community Engagement</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Upvote, comment, and engage with community-reported concerns
-                </p>
-              </motion.div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+        {/* Step 1 */}
+        <motion.div
+          className="group text-center relative"
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          viewport={{ once: true }}
+          whileHover={{ y: -10 }}
+        >
+          <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg z-20">1</div>
+          <div className="relative mb-8">
+            <div className="w-16 h-16 mx-auto bg-green-600 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105 group-hover:bg-gray-900">
+              <MdSecurity className="text-2xl text-white" />
             </div>
           </div>
-        </div>
-      </section>
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Sign Up & Login</h3>
+          <p className="text-gray-500 text-sm leading-relaxed px-4">
+            Create your account and access the platform with secure authentication
+          </p>
+        </motion.div>
+
+        {/* Step 2 */}
+        <motion.div
+          className="group text-center relative"
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          whileHover={{ y: -10 }}
+        >
+          <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg z-20">2</div>
+          <div className="relative mb-8">
+            <div className="w-16 h-16 mx-auto bg-gray-900 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105 group-hover:bg-green-600">
+              <MdReportProblem className="text-2xl text-white" />
+            </div>
+          </div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Report Issues</h3>
+          <p className="text-gray-500 text-sm leading-relaxed px-4">
+            Submit complaints about roads, sanitation, transport, and infrastructure
+          </p>
+        </motion.div>
+
+        {/* Step 3 */}
+        <motion.div
+          className="group text-center relative"
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+          whileHover={{ y: -10 }}
+        >
+          <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg z-20">3</div>
+          <div className="relative mb-8">
+            <div className="w-16 h-16 mx-auto bg-green-600 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105 group-hover:bg-gray-900">
+              <MdTrackChanges className="text-2xl text-white" />
+            </div>
+          </div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Track Progress</h3>
+          <p className="text-gray-500 text-sm leading-relaxed px-4">
+            Monitor real-time status updates and resolution progress
+          </p>
+        </motion.div>
+
+        {/* Step 4 */}
+        <motion.div
+          className="group text-center relative"
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          whileHover={{ y: -10 }}
+        >
+          <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg z-20">4</div>
+          <div className="relative mb-8">
+            <div className="w-16 h-16 mx-auto bg-gray-900 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105 group-hover:bg-green-600">
+              <HiOutlineChatBubbleBottomCenterText className="text-2xl text-white" />
+            </div>
+          </div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Community Engagement</h3>
+          <p className="text-gray-500 text-sm leading-relaxed px-4">
+            Upvote, comment, and engage with community-reported concerns
+          </p>
+        </motion.div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Technology Stack Section */}
       <section className="py-20 px-6 bg-gray-50">
@@ -863,6 +869,7 @@ function Home() {
                     <img
                       src={member.image}
                       alt={member.name}
+                      loading="lazy"
                       className="w-24 h-24 mx-auto rounded-full object-cover shadow-lg border-4 border-gray-100 group-hover:border-green-500 transition-all duration-300"
                     />
                   </motion.div>

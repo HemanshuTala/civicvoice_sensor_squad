@@ -15,26 +15,47 @@ function Login() {
 
   // Handle OTP input change
   const handleChange = (index, value) => {
-    if (value.length > 1) return; // Restrict multiple characters
+    const digit = value.replace(/\D/g, '').slice(0, 1);
     const newOtp = [...otp];
-    newOtp[index] = value;
+    newOtp[index] = digit;
     setOtp(newOtp);
 
     // Focus next input field automatically
-    if (value !== "" && index < otp.length - 1) {
-      document.getElementById(`otp-${index + 1}`).focus();
+    if (digit !== "" && index < otp.length - 1) {
+      const next = document.getElementById(`otp-${index + 1}`);
+      if (next) next.focus();
     }
   };
 
   // Handle backspace key
   const handleKeyDown = (index, event) => {
     if (event.key === "Backspace" && otp[index] === "" && index > 0) {
-      document.getElementById(`otp-${index - 1}`).focus();
+      const prev = document.getElementById(`otp-${index - 1}`);
+      if (prev) prev.focus();
     }
+  };
+
+  // Handle paste full OTP
+  const handlePaste = (e) => {
+    const pasted = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 6);
+    if (!pasted) return;
+    const filled = pasted.split("");
+    const newOtp = [...otp];
+    for (let i = 0; i < newOtp.length; i++) {
+      newOtp[i] = filled[i] || "";
+    }
+    setOtp(newOtp);
+    const lastIndex = Math.min(filled.length - 1, 5);
+    const focusEl = document.getElementById(`otp-${Math.max(lastIndex, 0)}`);
+    if (focusEl) focusEl.focus();
   };
 
   // Start OTP timer
   const startOtpTimer = () => {
+    if (!email) {
+      toast.error("Please enter your email first.");
+      return;
+    }
     setOtpRequested(true);
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user/generate-otp`, {
@@ -113,13 +134,14 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full h-screen font-poppins py-6">
+    <div className="flex items-center justify-center w-full min-h-screen font-poppins py-6 px-4">
       <ToastContainer />
-      <div className="w-full max-w-md bg-white rounded-lg shadow-xl p-8 space-y-6">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-xl p-6 sm:p-8 space-y-6">
         {/* Header */}
-        <h1 className="text-4xl font-semibold text-gray-800 text-center mb-6">
+        <h1 className="text-3xl sm:text-4xl font-semibold text-gray-800 text-center mb-2">
           Log<span className="text-green-500">!</span>n
         </h1>
+        <p className="text-center text-gray-500 text-sm sm:text-base">One-time password will be sent to your email</p>
 
         {/* Form */}
         <form onSubmit={handleLogin}>
@@ -131,7 +153,7 @@ function Login() {
             >
               Email
             </label>
-            <div className="flex items-center border border-gray-300 rounded-lg">
+            <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-green-400">
               <FaRegEnvelope className="text-gray-500 ml-3" />
               <input
                 type="email"
@@ -140,6 +162,9 @@ function Login() {
                 className="w-full px-4 py-3 focus:outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
+                inputMode="email"
+                autoComplete="email"
               />
             </div>
           </div>
@@ -152,17 +177,20 @@ function Login() {
             >
               OTP
             </label>
-            <div className="flex justify-between gap-3">
+            <div className="flex justify-between gap-2 sm:gap-3" onPaste={handlePaste}>
               {otp.map((value, index) => (
                 <input
                   key={index}
                   id={`otp-${index}`}
                   type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   maxLength="1"
                   value={value}
                   onChange={(e) => handleChange(index, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
-                  className="w-14 h-14 text-center text-2xl border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 ease-in-out"
+                  className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 text-center text-xl md:text-2xl border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-300 ease-in-out"
+                  aria-label={`OTP digit ${index + 1}`}
                 />
               ))}
             </div>
